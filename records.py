@@ -47,9 +47,10 @@ class Record:
 
 class Record_manager():
     def __init__(self):
-        sqliteConnection = sqlite3.connect('inventory.db')
+        global Connection
+        Connection = sqlite3.connect('inventory.db')
         global cursor
-        cursor = sqliteConnection.cursor()
+        cursor = Connection.cursor()
         #done
 
     def read_all():
@@ -60,7 +61,7 @@ class Record_manager():
         for row in output:
             record=Record(row)
             array.append(record)
-        cursor.commit()
+        Connection.commit()
         return array
     #done ish
 
@@ -68,7 +69,7 @@ class Record_manager():
         query="""SELECT * FROM Inventory
                 WHERE product_code = {0}""",product_code
         item = cursor.execute(query)
-        cursor.commit()
+        Connection.commit()
         return item
     #done
     
@@ -76,19 +77,22 @@ class Record_manager():
         query=f"""INSERT INTO Inventory (product_name,product_code,quantity,unit,who,time)
                 VALUES ({0},{1},{2},{3},{4},{5})""",product_name,product_code,user,quantity,unit
         cursor.execute(query)
-        cursor.commit()
+        Connection.commit()
         #done
 
     def update(query,user,product_code):
         query2="""UPDATE Inventory SET user = {1} WHERE product_code = {2}""",user.username,product_code   
         cursor.execute(query)
         cursor.execute(query2)
-        cursor.commit()
+        Connection.commit()
         #done
 
     def delete(product):
         query="""DELETE FROM Inventory WHERE
                 product_code = '"""+product+"'"
         cursor.execute(query)
-        cursor.commit()
+        Connection.commit()
         #done
+
+    def close():
+        Connection.close()
