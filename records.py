@@ -11,7 +11,6 @@ class Record:
         self.__user=user
         self.__quantity=quantity
         self.__unit=unit
-        self.__time=datetime.now()
         
     def update_record(self, feild, value):
         #set up quesry changing specific feild

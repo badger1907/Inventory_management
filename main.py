@@ -40,28 +40,22 @@ def user_authentication():
 
 def start_checks():
     #check file exists
-    try:
-        file=open("Users.txt","x")
-        file2=open("log.txt","x")
-    finally:
-        file.close()
-        file2.close()
+
+        
         
     #check adtabse exists
     connection=sqlite3.connect("inventory.db")
     cursor = connection.cursor()
-    table_creation="""
-        CREATE TABLE IF NOT EXISTS Inventory(
-            id INTEGER PRIMARY KEY AUTOINCREMENTS,
+    table_creation="""CREATE TABLE IF NOT EXISTS Inventory(
+            id INTEGER PRIMARY KEY,
             product_name VARCHAR(25),
             Product_code VARCHAR(25),
             quantity INTEGER,
             unit VARCHAR(5),
-            who VARCHAR(25),
-        );
+            who VARCHAR(25));
     """
     cursor.execute(table_creation)
-    cursor.commit()
+    connection.commit()
     connection.close()
 
 #initial checks
