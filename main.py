@@ -1,5 +1,7 @@
 import users
 import hashlib
+import sqlite3
+import records
 
 def user_authentication():
     not_loggedin=True
@@ -38,9 +40,34 @@ def user_authentication():
 
 def start_checks():
     #check file exists
+    try:
+        file=open("Users.txt","x")
+        file2=open("log.txt","x")
+    finally:
+        file.close()
+        file2.close()
+        
     #check adtabse exists
-    pass
+    connection=sqlite3.connect("inventory.db")
+    cursor = connection.cursor()
+    table_creation="""
+        CREATE TABLE IF NOT EXISTS Inventory(
+            id INTEGER PRIMARY KEY AUTOINCREMENTS,
+            product_name VARCHAR(25),
+            Product_code VARCHAR(25),
+            quantity INTEGER,
+            unit VARCHAR(5),
+            who VARCHAR(25),
+        );
+    """
+    cursor.execute(table_creation)
+    cursor.commit()
+    connection.close()
 
-
+#initial checks
 start_checks()
+#autheticate user
 user_authentication()
+#use databse
+
+
