@@ -14,11 +14,8 @@ class Record:
 
         
     def update_record(self, feild, value):
-        #set up quesry changing specific feild
-        query="""UPDATE Inventory SET {0} = {1} WHERE product_code = {2}""",feild,value,self.__product_code
-        Record_manager.Update(query,self.__user,self.__product_code)
+        Record_manager.Update(feild,value,self.__user,self.__product_code)
         self.log(self.__user, "updated inventory item "+self.__product_code)
-        #done  
 
     def write_record(self):
         Record_manager.write(self.__product_name,self.__product_code,self.__user,self.__quantity,self.__unit)
@@ -52,10 +49,6 @@ class Record_manager():
         query="""SELECT * FROM Inventory"""
         cursor.execute(query)
         output=cursor.fetchall()
-        array=[]
-        # for row in output:
-        #     record=Record(row[1],)
-        #     array.append(record)
         Connection.commit()
         Connection.close()
         file = open("log.txt","a")
@@ -68,7 +61,7 @@ class Record_manager():
         Connection = sqlite3.connect('inventory.db')
         cursor = Connection.cursor()
         query="""SELECT * FROM Inventory
-                WHERE product_code = {0}""",product_code
+                WHERE product_code = """ + product_code
         item = cursor.execute(query)
         Connection.commit()
         Connection.close()
@@ -84,23 +77,23 @@ class Record_manager():
         Connection.commit()
         Connection.close()
 
-    def update(query,user,product_code):
+    def update(feild,value,user,product_code):
         Connection = sqlite3.connect('inventory.db')
         cursor = Connection.cursor()
-        query2="""UPDATE Inventory SET user = {1} WHERE product_code = {2}""",user.username,product_code   
-        cursor.execute(query)
-        cursor.execute(query2)
+        query="""UPDATE Inventory SET ? = ? WHERE product_code = ?"""
+        query2="""UPDATE Inventory SET user = ? WHERE product_code = ?"""  
+        cursor.execute(query,(feild,value,product_code))
+        cursor.execute(query2,(user.username,product_code))
         Connection.commit()
         Connection.close()
-        #done
 
     def delete(product):
         Connection = sqlite3.connect('inventory.db')
         cursor = Connection.cursor()
         query="""DELETE FROM Inventory WHERE
-                product_code = '"""+product+"'"
+                product_code = """+product
         cursor.execute(query)
         Connection.commit()
         Connection.close()
-        #done
+
 
