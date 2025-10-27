@@ -2,6 +2,7 @@ import users
 import hashlib
 import sqlite3
 import records
+import datetime
 
 def user_authentication():
     not_loggedin=True
@@ -15,11 +16,8 @@ def user_authentication():
         sha256=hashlib.sha256()
         sha256.update(password)
         e_password  = sha256.hexdigest()
-        #print("entered username:"+username)
-        #print("enteered hashed pass:"+e_password)
         unconfirmed_user=users.User(username, e_password)
         found=unconfirmed_user.login()
-        print(found)
         if found == 1:
             not_loggedin=False
             print("******************************")
@@ -52,16 +50,77 @@ def start_checks():
             Product_code VARCHAR(25),
             quantity INTEGER,
             unit VARCHAR(5),
-            who VARCHAR(25));
+            who VARCHAR(25),
+            time VARCHAR(25));
     """
     cursor.execute(table_creation)
     connection.commit()
     connection.close()
 
+def menu1(user):
+    inp=""
+    print("welcome to Fylde Aero Inventory system")
+    print("This is currently being run in the command line")
+    valid=False
+    while valid==False:
+        print("if you would like to see what is in the databse, press 1")
+        print("if you would like to create an entry, press 2")
+        print("Please enter '/' to exit")
+        inp=input("Enter a value (1,2 or '/'): ")
+        if inp == "1":
+            print("items displayed")
+            array_records=records.Record_manager.read_all(user)
+            for item in array_records:
+                print(item)
+            valid=True
+        elif inp == "2":
+            checked=False
+            while checked==False:
+                checked=True
+                record_name=input("enter the name of the item: ")
+                record_code=input("enter the product code: ")
+                quantity=input("enter the quantity: ")
+                if quantity.isdigit() == True:
+                    if int(quantity)<0:
+                        checked=False
+                        print("error - must be greater than 0")
+                        continue
+                else:
+                    checked=False
+                    print("error - must be a number")
+                    continue
+                unit=input("enter the unit: ")    
+            record=records.Record(record_name,record_code,user,quantity,unit)
+            record.write_record()
+            valid=True
+        elif inp=="/":
+            print("you have exited the application")
+            valid=True
+            return False
+        else:
+            print("not a valid input, try again")
+    return True
+
+    
+
 #initial checks
 start_checks()
 #autheticate user
-user_authentication()
+user=user_authentication()
 #use databse
+still_going=1
+while still_going:
+    still_going=menu1(user)
+    
 
-
+# Connection = sqlite3.connect('inventory.db')
+# cursor = Connection.cursor()
+# product_name="5mm bolts"
+# product_code="AFG56"
+# quantity=5
+# unit="pieces"
+# query=f"""INSERT INTO Inventory (product_name,product_code,quantity,unit,who,time)
+#         VALUES (?,?,?,?,?,?)"""
+# cursor.execute(query,(product_name,product_code,quantity,unit,user.username,datetime.datetime.now()))
+# Connection.commit()
+# Connection.close()
