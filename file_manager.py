@@ -3,48 +3,71 @@ import datetime
 class filemanager:
 
     def new_user(self,f_name,l_name,username,password):
-        file=open("Users.txt","a")
-        #username, hashed pass, first name, last name
-        Line= f"{username},{str(password)},{f_name},{l_name}\n"
-        file.write(Line)
-        file.close()
+        try:
+            file=open("Users.txt","a")
+            #username, hashed pass, first name, last name
+            Line= f"{username},{str(password)},{f_name},{l_name}\n"
+            file.write(Line)
+        except:
+            print("file handling error occured")
+        finally:
+            file.close()
 
     def get_user(self,username):
-        file=open("Users.txt","r")
-        found = False
-        while found == False:
-            line=file.readline()
-            line=line.strip()
-            file_username, password, f_name, s_name = line.split(',')
-            if file_username == username:
-                found=True
-                file.close()
-                return file_username, password
+        try:
+            file=open("Users.txt","r")
+            found = False
+            while found == False:
+                line=file.readline()
+                line=line.strip()
+                file_username, password, f_name, s_name = line.split(',')
+                if file_username == username:
+                    found=True
+                    file.close()
+                    return file_username, password
+        except:
+            print("file handling error occured")
+            file.close()
                 
     
     def find_user(self,username):
-        file=open("Users.txt","r")
-        line = "stuff"
-        while line != "":
-            line=file.readline()
-            line=line.strip()
-            if line != "":
-                file_username, password, f_name, s_name = line.split(',')
-                if file_username == username:
-                    return True
-        return False
+        try:
+            file=open("Users.txt","r")
+            line = "stuff"
+            while line != "":
+                line=file.readline()
+                line=line.strip()
+                if line != "":
+                    file_username, password, f_name, s_name = line.split(',')
+                    if file_username == username:
+                        return True
+            return False
+        except:
+            print("file handling error occured")
+        finally:
+            file.close()
+
     
     def log(user, action):
-        file = open("log.txt","a")
-        file.write(user.username+" did "+action+" on " +datetime.datetime.now().strftime("%d/%m/%y, %H:%M:%S")+"\n")
-        file.close()
+        try:
+            file = open("log.txt","a")
+            file.write(user.username+" did "+action+" on " +datetime.datetime.now().strftime("%d/%m/%y, %H:%M:%S")+"\n")
+        except:
+            print("file handling error occured")
+        finally:
+            file.close()
 
     def view_logs():
-        file = open("log.txt","r")
-        line=file.readline()
-        while line !="":
+        try:
+            file = open("log.txt","r")
             line=file.readline()
-            print(line)
+            while line !="":
+                line=file.readline()
+                print(line)
+        except:
+            print("file handling error occured")
+        finally:
+            file.close()
         
 
 
