@@ -73,6 +73,7 @@ def menu1(user):
             for item in array_records:
                 print(item)
             valid=True
+            menu2(user)
         elif inp == "2":
             checked=False
             while checked==False:
@@ -101,7 +102,34 @@ def menu1(user):
             print("not a valid input, try again")
     return True
 
-    
+def menu2(user):
+    print("please select an entry to work with")
+    code=input("enter the product-code of the entry: ")   
+    entry=records.Record_manager.select(code,user)
+    #validation inside read
+    print("you have selected:")
+    entry.display_record()
+    valid=False
+    while valid==False:
+        print("1 - update record")
+        print("2 - delete record")
+        print("/ - to escape")
+        inp=input("What would you like to do with the selected record: ")
+        match inp:
+            case "1":
+                feild=input("enter the feild (product_name,Product_code,quantity,unit) you would like to change: ")
+                value=input("enter the value you would like to change it to: ")
+                entry.update_record(feild,value)
+                #validation inside update
+                valid=True
+            case "2":
+                entry.delete_record()
+                valid=True
+            case "/":
+                valid=True
+            case _:
+                print("invalid option - try again")
+    menu1(user)
 
 #initial checks
 start_checks()
@@ -113,14 +141,4 @@ while still_going:
     still_going=menu1(user)
     
 
-# Connection = sqlite3.connect('inventory.db')
-# cursor = Connection.cursor()
-# product_name="5mm bolts"
-# product_code="AFG56"
-# quantity=5
-# unit="pieces"
-# query=f"""INSERT INTO Inventory (product_name,product_code,quantity,unit,who,time)
-#         VALUES (?,?,?,?,?,?)"""
-# cursor.execute(query,(product_name,product_code,quantity,unit,user.username,datetime.datetime.now()))
-# Connection.commit()
-# Connection.close()
+

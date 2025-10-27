@@ -14,7 +14,7 @@ class Record:
 
         
     def update_record(self, feild, value):
-        Record_manager.Update(feild,value,self.__user,self.__product_code)
+        Record_manager.update(feild,value,self.__user,self.__product_code)
         self.log(self.__user, "updated inventory item "+self.__product_code)
 
     def write_record(self):
@@ -22,14 +22,12 @@ class Record:
         self.log(self.__user, "added inventory item "+self.__product_code)
 
     def delete_record(self):
-        Record_manager.Delete(self.__product_code)
+        Record_manager.delete(self.__product_code)
         self.log(self.__user, "deleted inventory item "+self.__product_code)
         #done
     
-    def read_record(self,product_code):
-        item=Record_manager.read(product_code)
-        self.log(self.__user, "read inventory item "+self.__product_code)
-        print(item)
+    def display_record(self):
+        print(self.__product_name+","+self.__product_code+","+self.__quantity+","+self.__unit)
         
 
     def log(self, user, action):
@@ -57,16 +55,25 @@ class Record_manager():
         return output
     #done ish
 
-    def read(product_code):
+    def select(product_code_entered,user):
         Connection = sqlite3.connect('inventory.db')
         cursor = Connection.cursor()
-        query="""SELECT * FROM Inventory
-                WHERE product_code = """ + product_code
-        item = cursor.execute(query)
+        valid_code=False    
+        while valid_code == False:
+            query="""SELECT * FROM Inventory
+                    WHERE product_code = '""" + product_code_entered +"'"
+            cursor.execute(query)
+            item=cursor.fetchone()
+            if item != None:
+                entry=Record(item[1],item[2],user,item[4],item[5])
+                valid_code=True
+            else:
+                product_code_entered=input("enter a valid product code: ")
         Connection.commit()
         Connection.close()
-        return item
-    #done
+        return entry
+
+    
     
     def write(product_name,product_code,user,quantity,unit):
         Connection = sqlite3.connect('inventory.db')
@@ -78,11 +85,22 @@ class Record_manager():
         Connection.close()
 
     def update(feild,value,user,product_code):
+        valid_feilds=["product_name","Product_code","quantity","unit"]
         Connection = sqlite3.connect('inventory.db')
         cursor = Connection.cursor()
-        query="""UPDATE Inventory SET ? = ? WHERE product_code = ?"""
-        query2="""UPDATE Inventory SET user = ? WHERE product_code = ?"""  
-        cursor.execute(query,(feild,value,product_code))
+        valid=False
+        while valid==False:
+            for i in range (0,len(valid_feilds)):
+                if valid_feilds[i] == feild:
+                    valid=True
+            if valid==False:
+                print("invalid - feild name not valid")
+                feild=input("enter the feild (product_name,Product_code,quantity,unit) you would like to change: ")
+                value=input("enter the value you would like to change it to: ")
+                
+        query="UPDATE Inventory SET '"+feild+"' = ? WHERE product_code = ?"
+        query2="""UPDATE Inventory SET who = ? WHERE product_code = ?"""  
+        cursor.execute(query,(value,product_code))
         cursor.execute(query2,(user.username,product_code))
         Connection.commit()
         Connection.close()
@@ -91,7 +109,7 @@ class Record_manager():
         Connection = sqlite3.connect('inventory.db')
         cursor = Connection.cursor()
         query="""DELETE FROM Inventory WHERE
-                product_code = """+product
+                Product_code = '"""+product+"'"
         cursor.execute(query)
         Connection.commit()
         Connection.close()
