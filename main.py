@@ -2,12 +2,11 @@ import users
 import hashlib
 import sqlite3
 import records
-import datetime
 
 def user_authentication():
     not_loggedin=True
     while not_loggedin:
-        print("******************************")
+        print("*****************************************")
         print(" -- Login --")
         username=input("enter yout username: ")
         password=input("enter your password: ")
@@ -20,7 +19,7 @@ def user_authentication():
         found=unconfirmed_user.login()
         if found == 1:
             not_loggedin=False
-            print("******************************")
+            print("*****************************************")
             return unconfirmed_user
         elif found == 2:
             print("")
@@ -36,12 +35,8 @@ def user_authentication():
         print("error - please try again later")
 
 
-def start_checks():
-    #check file exists
-
-        
-        
-    #check adtabse exists
+def start_checks():  
+    #check databse and table exists
     connection=sqlite3.connect("inventory.db")
     cursor = connection.cursor()
     table_creation="""CREATE TABLE IF NOT EXISTS Inventory(
@@ -57,27 +52,35 @@ def start_checks():
     connection.commit()
     connection.close()
 
+
 def menu1(user):
     inp=""
+    print("*****************************************")
     print("welcome to Fylde Aero Inventory system")
     print("This is currently being run in the command line")
+    print("---------------------------------")
     valid=False
     while valid==False:
         print("if you would like to see what is in the databse, press 1")
         print("if you would like to create an entry, press 2")
         print("Please enter '/' to exit")
         inp=input("Enter a value (1,2 or '/'): ")
+        print("---------------------------------")
         if inp == "1":
-            print("items displayed")
+            print("")
+            print("---Inventory---")
             array_records=records.Record_manager.read_all(user)
             for item in array_records:
                 print(item)
             valid=True
+            print("--------------")
             menu2(user)
         elif inp == "2":
             checked=False
             while checked==False:
                 checked=True
+                print("")
+                print("---Create entry---")
                 record_name=input("enter the name of the item: ")
                 record_code=input("enter the product code: ")
                 quantity=input("enter the quantity: ")
@@ -90,19 +93,20 @@ def menu1(user):
                     checked=False
                     print("error - must be a number")
                     continue
-                unit=input("enter the unit: ")    
+                unit=input("enter the unit: ")
+                print("------")    
             record=records.Record(record_name,record_code,user,quantity,unit)
             record.write_record()
             valid=True
         elif inp=="/":
             print("you have exited the application")
-            valid=True
-            return False
+            exit(1)
         else:
             print("not a valid input, try again")
     return True
 
 def menu2(user):
+    print(" ")
     print("please select an entry to work with")
     code=input("enter the product-code of the entry: ")   
     entry=records.Record_manager.select(code,user)
@@ -110,6 +114,7 @@ def menu2(user):
     print("you have selected:")
     entry.display_record()
     valid=False
+    print("---------------------")
     while valid==False:
         print("1 - update record")
         print("2 - delete record")
