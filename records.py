@@ -49,7 +49,7 @@ class Record_manager():
         file.write(user.username+" read inventory at " +datetime.now().strftime("%d/%m/%y, %H:%M:%S")+"\n")
         file.close()
         return output
-    #done ish
+    
 
     def select(product_code_entered,user):
         Connection = sqlite3.connect('inventory.db')
@@ -70,8 +70,31 @@ class Record_manager():
         filemanager.log(user,"selected"+product_code_entered)
         return entry
 
-    
-    
+    def search(feild,value):
+        valid_feilds=["product_name","Product_code","quantity","unit","who"]
+        Connection = sqlite3.connect('inventory.db')
+        cursor = Connection.cursor()
+        valid=False
+        while valid==False:
+            for i in range (0,len(valid_feilds)):
+                if valid_feilds[i] == feild:
+                    valid=True
+            if valid==False:
+                print("invalid - feild name not valid")
+                feild=input("enter the feild (product_name,Product_code,quantity,unit,who) you are searching: ")
+                value=input("enter the value you are searching: ")
+        query="""SELECT * FROM Inventory
+                WHERE """+feild+ "= '"+value+"'"
+        cursor.execute(query)
+        rows=cursor.fetchall()
+        for row in rows:
+            print(row)
+        Connection.commit()
+        Connection.close()
+                
+        
+
+
     def write(product_name,product_code,user,quantity,unit):
         Connection = sqlite3.connect('inventory.db')
         cursor = Connection.cursor()

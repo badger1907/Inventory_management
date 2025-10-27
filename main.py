@@ -25,14 +25,13 @@ def user_authentication():
             print("")
         else:
             print("we couldnt find your acount")
-            option=int(input("enter 1 for sign up or 2 for quit"))
+            option=int(input("enter 1 for sign up, 2 to try again or 3 to quit"))
             if option == 1:
                 unconfirmed_user.sign_up()
                 print ("sign up complete")
-            else:
+            elif option == 3:
                 not_loggedin=False
-        print("******************************")
-        print("error - please try again later")
+                exit(1)
 
 
 def start_checks():  
@@ -61,10 +60,11 @@ def menu1(user):
     print("---------------------------------")
     valid=False
     while valid==False:
-        print("if you would like to see what is in the databse, press 1")
-        print("if you would like to create an entry, press 2")
-        print("Please enter '/' to exit")
-        inp=input("Enter a value (1,2 or '/'): ")
+        print("1 - See table")
+        print("2 - create an entry")
+        print("3 - search")
+        print("/ - exit")
+        inp=input("Enter a value (1-3 or '/'): ")
         print("---------------------------------")
         if inp == "1":
             print("")
@@ -98,6 +98,19 @@ def menu1(user):
             record=records.Record(record_name,record_code,user,quantity,unit)
             record.write_record()
             valid=True
+        elif inp == "3":
+            print("")
+            print("---search---")
+            feild=input("enter the feild (product_name,Product_code,quantity,unit,who) you are searching: ")
+            value=input("enter the value you are searching: ")
+            records.Record_manager.search(feild,value)
+            valid=True
+            print("--------------")
+            print("select field(s) Y/N")
+            if "Y":
+                menu2(user)
+            else:
+                menu1(user)
         elif inp=="/":
             print("you have exited the application")
             exit(1)
