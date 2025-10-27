@@ -1,5 +1,4 @@
-import file_manager
-import users
+from file_manager import filemanager
 from datetime import datetime
 import sqlite3
 
@@ -15,25 +14,22 @@ class Record:
         
     def update_record(self, feild, value):
         Record_manager.update(feild,value,self.__user,self.__product_code)
-        self.log(self.__user, "updated inventory item "+self.__product_code)
+        filemanager.log(self.__user, "updated inventory item "+self.__product_code)
 
     def write_record(self):
         Record_manager.write(self.__product_name,self.__product_code,self.__user,self.__quantity,self.__unit)
-        self.log(self.__user, "added inventory item "+self.__product_code)
+        filemanager.log(self.__user, "added inventory item "+self.__product_code)
 
     def delete_record(self):
         Record_manager.delete(self.__product_code)
-        self.log(self.__user, "deleted inventory item "+self.__product_code)
+        filemanager.log(self.__user, "deleted inventory item "+self.__product_code)
         #done
     
     def display_record(self):
         print(self.__product_name+","+self.__product_code+","+self.__quantity+","+self.__unit)
         
 
-    def log(self, user, action):
-        file = open("log.txt","a")
-        file.write(user.username+" did "+action+" on " +datetime.now().strftime("%d/%m/%y, %H:%M:%S")+"\n")
-        file.close()
+    
 
 
 
@@ -71,6 +67,7 @@ class Record_manager():
                 product_code_entered=input("enter a valid product code: ")
         Connection.commit()
         Connection.close()
+        filemanager.log(user,"selected"+product_code_entered)
         return entry
 
     

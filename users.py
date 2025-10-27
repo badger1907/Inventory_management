@@ -18,6 +18,7 @@ class User:
         while system.find_user(self.username):
             self.username=input("enter a diffent username")
         system.new_user(f_name,s_name,self.username,self.password)
+        file_manager.filemanager.log(self,"signed up")
     
     def login(self):
         system = file_manager.filemanager()
@@ -28,6 +29,7 @@ class User:
             if password==self.password:
                 self.logged_in = True
                 print("login succesful")
+                file_manager.filemanager.log(self,"logged in")
                 return 1
             else:
                 print("password incorrect - try again")

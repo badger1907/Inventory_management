@@ -1,3 +1,5 @@
+import datetime
+
 class filemanager:
 
     def new_user(self,f_name,l_name,username,password):
@@ -31,7 +33,11 @@ class filemanager:
                 if file_username == username:
                     return True
         return False
-
+    
+    def log(user, action):
+        file = open("log.txt","a")
+        file.write(user.username+" did "+action+" on " +datetime.now().strftime("%d/%m/%y, %H:%M:%S")+"\n")
+        file.close()
 # This doesn't work and no one knows why
 #     # def get_user(self,username):
 #     #     file=open("Users.txt","r")
