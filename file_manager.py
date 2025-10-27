@@ -38,6 +38,18 @@ class filemanager:
         file = open("log.txt","a")
         file.write(user.username+" did "+action+" on " +datetime.datetime.now().strftime("%d/%m/%y, %H:%M:%S")+"\n")
         file.close()
+
+    def view_logs():
+        file = open("log.txt","r")
+        line=file.readline()
+        while line !="":
+            line=file.readline()
+            print(line)
+        
+
+
+
+    
 # This doesn't work and no one knows why
 #     # def get_user(self,username):
 #     #     file=open("Users.txt","r")

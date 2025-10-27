@@ -2,6 +2,7 @@ import users
 import hashlib
 import sqlite3
 import records
+import file_manager
 
 def user_authentication():
     not_loggedin=True
@@ -63,8 +64,9 @@ def menu1(user):
         print("1 - See table")
         print("2 - create an entry")
         print("3 - search")
+        print("4 - admin mode")
         print("/ - exit")
-        inp=input("Enter a value (1-3 or '/'): ")
+        inp=input("Enter a value (1-4 or '/'): ")
         print("---------------------------------")
         if inp == "1":
             print("")
@@ -114,6 +116,8 @@ def menu1(user):
         elif inp=="/":
             print("you have exited the application")
             exit(1)
+        elif inp == "4":
+            admin(user)
         else:
             print("not a valid input, try again")
     return True
@@ -148,6 +152,29 @@ def menu2(user):
             case _:
                 print("invalid option - try again")
     menu1(user)
+
+def admin(user):
+    print(" -- Login --")
+    password=input("enter your password: ")
+    print("-----------")
+    password=str.encode(password)
+    sha256=hashlib.sha256()
+    sha256.update(password)
+    e_password  = sha256.hexdigest()
+    unconfirmed_user=users.User("admin", e_password)
+    found=unconfirmed_user.admin_login()
+    if found:
+        print("login sucesful")
+        print("1 - view logs")
+        print("2 - return to main menu")
+        inp=input()
+        if inp=="1":
+            file_manager.filemanager.view_logs()
+    else:
+        print("login failed")
+        print("your atempts has been logged")
+    menu1(user)
+
 
 #initial checks
 start_checks()

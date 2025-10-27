@@ -36,6 +36,16 @@ class User:
             return 2
         else:
             return 0
+    
+    def admin_login(self):
+        file=open("admins.txt","r")
+        password=file.readline()
+        if self.password==password:
+            file_manager.filemanager.log(self,"logged in as an admin")
+            return True
+        else:
+            file_manager.filemanager.log(self,"FAILED at logging in as an admin")
+            return False
         
 
 
