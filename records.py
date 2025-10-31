@@ -120,17 +120,17 @@ class Record_manager():
             Connection = sqlite3.connect('inventory.db')
             cursor = Connection.cursor()
             valid=False
-            #check the feild is valid
+            #checks valid field
             while valid==False:
                 for i in range (0,len(valid_feilds)):
                     if valid_feilds[i] == feild:
                         valid=True
                 if valid==False:
                     print("invalid - feild name not valid")
-                    feild=input("enter the feild (product_name,Product_code,quantity,unit,who) you are searching: ")
-                    value=input("enter the value you are searching: ")
+                    feild=input("enter the feild (product_name,Product_code,quantity,unit,) you would like to change: ")
+                    value=input("enter the value you would like to change it to: ")
             query="""SELECT * FROM Inventory
-                    WHERE """+feild+ "= '"+value+"'"
+                    WHERE """+feild+ "= '"+value+"';"
             cursor.execute(query)
             rows=cursor.fetchall()
             #displays records found

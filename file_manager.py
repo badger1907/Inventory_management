@@ -11,6 +11,7 @@ class filemanager:
             file.write(Line)
         except:
             print("file handling error occured")
+            print(Exception)
         finally:
             file.close()
 

@@ -53,6 +53,11 @@ class main():
 
 
     def start_checks(self):  
+        try:
+            file=open("users.txt","x")
+            print("file made")
+        except:
+            print("file aleady exists")
         #check databse and table exists
         try:
             connection=sqlite3.connect("inventory.db")
@@ -69,7 +74,7 @@ class main():
             cursor.execute(table_creation)
             connection.commit()
         except:
-                print("file handling error occured")
+                print("databse error")
         finally:
             connection.close()
 
@@ -137,12 +142,12 @@ class main():
                     feild=input("enter the feild (product_name,Product_code,quantity,unit,who) you are searching: ")
                     value=input("enter the value you are searching: ")
                     #entered values then searched (validation in function)
-                    records.Record_manager.search(feild,value)
+                    records.Record_manager.search(feild,value,user)
                     valid=True
                     #option to select a entry or go back to the main menu
                     print("--------------")
-                    print("select field(s) Y/N")
-                    if "Y":
+                    entry=input("select field(s) Y/N")
+                    if input== "Y":
                         self.menu2(user)
                     else:
                         self.menu1(user)
