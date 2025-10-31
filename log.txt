@@ -27,3 +27,26 @@ username did logged in on 31/10/25, 11:47:46
 username did logged out on 31/10/25, 11:48:32
 username did logged in on 31/10/25, 11:50:02
 username did searched in who value on 31/10/25, 11:51:17
+testUser did signed up on 31/10/25, 12:01:27
+testUser did logged in on 31/10/25, 12:01:44
+testUser did logged out on 31/10/25, 12:01:51
+testUser did logged out on 31/10/25, 12:01:51
+username did logged in on 31/10/25, 12:02:41
+username read  inventory at 31/10/25, 12:02:58
+username did selectedGH67 on 31/10/25, 12:03:20
+username did updated inventory item GH67 on 31/10/25, 12:03:58
+username read  inventory at 31/10/25, 12:04:04
+username did selectedAFG56 on 31/10/25, 12:04:36
+username did logged in on 31/10/25, 12:05:34
+username did added inventory item PG91 on 31/10/25, 12:05:58
+username read  inventory at 31/10/25, 12:06:03
+username did selectedPG91 on 31/10/25, 12:06:26
+username did searched in product_name value on 31/10/25, 12:06:56
+username read  inventory at 31/10/25, 12:07:08
+username did selectedAFG56 on 31/10/25, 12:07:22
+username did logged out on 31/10/25, 12:09:55
+username did logged out on 31/10/25, 12:09:55
+username did logged out on 31/10/25, 12:09:55
+username did logged in on 31/10/25, 12:11:08
+username did added inventory item 5MS6 on 31/10/25, 12:11:56
+username did searched in Product_code value on 31/10/25, 12:12:34

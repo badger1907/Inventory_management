@@ -127,8 +127,8 @@ class Record_manager():
                         valid=True
                 if valid==False:
                     print("invalid - feild name not valid")
-                    feild=input("enter the feild (product_name,Product_code,quantity,unit,) you would like to change: ")
-                    value=input("enter the value you would like to change it to: ")
+                    feild=input("enter the feild (product_name,Product_code,quantity,unit,) you would to search through: ")
+                    value=input("enter the value you would like to search: ")
             query="""SELECT * FROM Inventory
                     WHERE """+feild+ "= '"+value+"';"
             cursor.execute(query)

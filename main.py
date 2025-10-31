@@ -146,8 +146,8 @@ class main():
                     valid=True
                     #option to select a entry or go back to the main menu
                     print("--------------")
-                    entry=input("select field(s) Y/N")
-                    if input== "Y":
+                    entry=input("select field(s) yes/no: ")
+                    if input== "yes":
                         self.menu2(user)
                     else:
                         self.menu1(user)
@@ -163,7 +163,6 @@ class main():
                     print("not a valid input, try again")
             return True
         except:
-            print("Its all broken")
             user.logout()
 
     #second meu allowing the user to select a single record
