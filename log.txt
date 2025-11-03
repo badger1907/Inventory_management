@@ -50,3 +50,6 @@ username did logged out on 31/10/25, 12:09:55
 username did logged in on 31/10/25, 12:11:08
 username did added inventory item 5MS6 on 31/10/25, 12:11:56
 username did searched in Product_code value on 31/10/25, 12:12:34
+username did logged in on 03/11/25, 12:14:02
+username did logged out on 03/11/25, 12:14:07
+username did logged out on 03/11/25, 12:14:07
