@@ -108,11 +108,7 @@ class main():
                         print(item)
                     valid=True
                     print("--------------")
-                    entry=input("select field(s) yes/no: ")
-                    if entry== "yes":
-                        self.menu2(user)
-                    else:
-                        self.menu1(user)
+                    self.menu2(user)
                 elif inp == "2":
                     #creates a new record
                     checked=False
@@ -151,7 +147,7 @@ class main():
                     #option to select a entry or go back to the main menu
                     print("--------------")
                     entry=input("select field(s) yes/no: ")
-                    if entry== "yes":
+                    if input== "yes":
                         self.menu2(user)
                     else:
                         self.menu1(user)

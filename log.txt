@@ -50,19 +50,3 @@ username did logged out on 31/10/25, 12:09:55
 username did logged in on 31/10/25, 12:11:08
 username did added inventory item 5MS6 on 31/10/25, 12:11:56
 username did searched in Product_code value on 31/10/25, 12:12:34
-username did logged in on 31/10/25, 12:15:19
-username did added inventory item RR67 on 31/10/25, 12:15:50
-username did searched in Product_code value on 31/10/25, 12:16:19
-username did logged in on 31/10/25, 12:17:31
-username did added inventory item W567 on 31/10/25, 12:17:51
-username did searched in Product_code value on 31/10/25, 12:18:23
-username did selectedW567 on 31/10/25, 12:18:36
-username did deleted inventory item W567 on 31/10/25, 12:18:40
-username read  inventory at 31/10/25, 12:18:42
-username did logged in on 31/10/25, 12:20:10
-username did logged in as an admin on 31/10/25, 12:20:17
-username did FAILED(password incorrect) at logging in as an admin on 31/10/25, 12:20:29
-username did logged out on 31/10/25, 12:20:38
-username did logged out on 31/10/25, 12:20:38
-username did logged out on 31/10/25, 12:20:38
-username did logged out on 31/10/25, 12:20:38
