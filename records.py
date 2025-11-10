@@ -106,6 +106,9 @@ class Record_manager():
             filemanager.log(user,"selected"+product_code_entered)
         return entry
 
+#extra comment
+
+
     #search table based of feild and value
     def search(feild,value,user):
         try:
