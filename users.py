@@ -12,13 +12,11 @@ class User:
         return self.logged_in
     
     #allows user to create an account
-    def sign_up(self):
+    def sign_up(self,f_name,s_name):
         try:
             #displays menu
             print ("--- sign up ---")
             system = file_manager.filemanager()
-            f_name=input("enter your first name: ")
-            s_name=input("enter your second name: ")
             #checks username not alreasy in use
             while system.find_user(self.username):
                 self.username=input("enter a diffent username")

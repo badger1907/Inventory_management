@@ -1,2 +1,3 @@
 username,d74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1,username,pass
 testUser,af0426e71dd57c0fdf93f23f6f191a4aa0578ad7d71897e936746028b8ffd31d,first,last
+new,11507a0e2f5e69d5dfa40a62a1bd7b6ee57e6bcd85c67c9b8431b36fff21c437,,

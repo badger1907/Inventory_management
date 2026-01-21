@@ -3,56 +3,60 @@ import hashlib
 import sqlite3
 import records
 import file_manager
+import gui
 
-class main():
+class Main():
+    def __init__(self):
+        self.gui = gui.Gui()
+        
 
     #user authentification stage, must be logged in to acess system
     def user_authentication(self):
-        try:
+
             not_loggedin=True
             #keeps going until logged in or program ends
             while not_loggedin:
                 #enters details
-                print("*****************************************")
-                print(" -- Login --")
-                username=input("enter yout username: ")
-                password=input("enter your password: ")
-                print("-----------")
-                #hashes password
-                password=str.encode(password)
-                sha256=hashlib.sha256()
-                sha256.update(password)
-                e_password  = sha256.hexdigest()
-                #create a user object
-                unconfirmed_user=users.User(username, e_password)
-                found=unconfirmed_user.login()
-                # based of outcome of login
-                if found == 1:
-                    #logged in sucesfully
-                    not_loggedin=False
-                    print("*****************************************")
-                    return unconfirmed_user
-                elif found == 2:
-                    #login failed, allows user to try again
-                    print("")
+                print("tryinhg to display logim")
+                username, password, attempt = self.gui.login_gui()
+                if attempt==False:
+                    #sign up process
+                    self.gui.clear_window()
+                    print("---- Sign Up ----")
+                    username, password, f_name, s_name = self.gui.signUp_gui()
+                    #hashes password
+                    password=str.encode(password)
+                    sha256=hashlib.sha256()
+                    sha256.update(password)
+                    e_password  = sha256.hexdigest()
+                    #create a user object
+                    new_user=users.User(username, e_password)
+
+                    self.gui.clear_window()
+                    new_user.sign_up(f_name, s_name)
                 else:
-                    #no account found
-                    print("we couldnt find your acount")
-                    option=int(input("enter 1 for sign up, 2 to try again or 3 to quit"))
-                    if option == 1:
-                        #user signs up then tries to login again
-                        unconfirmed_user.sign_up()
-                        print ("sign up complete")
-                    elif option == 3:
-                        #exits program
+                    #hashes password
+                    password=str.encode(password)
+                    sha256=hashlib.sha256()
+                    sha256.update(password)
+                    e_password  = sha256.hexdigest()
+                    #create a user object
+                    unconfirmed_user=users.User(username, e_password)
+                    found=unconfirmed_user.login()
+                    # based of outcome of login
+                    if found == 1:
+                        #logged in sucesfully
                         not_loggedin=False
-                        exit(1)
-                    #2 or anything else will let the user try again
-        except:
-            print("everything broke again")
+                        self.gui.clear_window()
+                        return unconfirmed_user
+                    else:
+                        self.gui.clear_window()
+
+            
 
 
     def start_checks(self):  
+        self.gui.loading_gui()
         try:
             file=open("users.txt","x")
             print("file made")
@@ -78,6 +82,7 @@ class main():
         finally:
             connection.close()
 
+
     #first meu seen by user
     #display table, create an entry, search the table, enter admin mode or quit
     def menu1(self,user):
@@ -89,6 +94,7 @@ class main():
             print("This is currently being run in the command line")
             print("---------------------------------")
             valid=False
+            #run search for items below
             #options with validation
             while valid==False:
                 print("1 - See table")
@@ -237,7 +243,7 @@ class main():
         except:
             print("no admins today")
 
-main=main()
+main=Main()
 #initial checks
 main.start_checks()
 #autheticate user

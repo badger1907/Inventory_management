@@ -106,7 +106,7 @@ class Record_manager():
             filemanager.log(user,"selected"+product_code_entered)
         return entry
 
-#extra comment
+
 
 
     #search table based of feild and value
@@ -130,9 +130,7 @@ class Record_manager():
                     WHERE """+feild+ "= '"+value+"';"
             cursor.execute(query)
             rows=cursor.fetchall()
-            #displays records found
-            for row in rows:
-                print(row)
+            return rows
         except:
             print("error occured - search failed")
         finally:
