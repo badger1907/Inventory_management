@@ -66,13 +66,6 @@ class Gui:
 
             results = records.Record_manager.search(feild, value, user)
 
-            if results:
-                populate(results)
-            else:
-                listbox.delete(0, END)
-                listbox.insert(END, "No results found")
-
-
         Button(
             search_frame,
             text="Search",
@@ -198,46 +191,46 @@ class Gui:
         Button(self.root, text="Login", command=login).pack(pady=5)
         Button(self.root, text="Back", command=self.refresh_main_menu).pack(pady=5)
 
-        def admin_menu(self):
-            self.clear_window()
+    def admin_menu(self):
+        self.clear_window()
 
-            Label(self.root, text="Admin Area", font=("Helvetica", 16)).pack(pady=10)
+        Label(self.root, text="Admin Area", font=("Helvetica", 16)).pack(pady=10)
 
-            Button(
-                self.root,
-                text="View Logs",
-                width=20,
-                command=self.view_logs_gui
-            ).pack(pady=5)
+        Button(
+            self.root,
+            text="View Logs",
+            width=20,
+            command=self.view_logs_gui
+        ).pack(pady=5)
 
-            Button(
-                self.root,
-                text="Back to Inventory",
-                width=20,
-                command=self.refresh_main_menu
-            ).pack(pady=10)
+        Button(
+            self.root,
+            text="Back to Inventory",
+            width=20,
+            command=self.refresh_main_menu
+        ).pack(pady=10)
 
-            def view_logs_gui(self):
-                self.clear_window()
+    def view_logs_gui(self):
+        self.clear_window()
 
-                Label(self.root, text="System Logs", font=("Helvetica", 16)).pack(pady=10)
+        Label(self.root, text="System Logs", font=("Helvetica", 16)).pack(pady=10)
 
-                text = Text(self.root, width=80, height=20)
-                text.pack(padx=10, pady=5)
+        text = Text(self.root, width=80, height=20)
+        text.pack(padx=10, pady=5)
 
-                try:
-                    with open("log.txt", "r") as file:
-                        text.insert(END, file.read())
-                except FileNotFoundError:
-                    text.insert(END, "No logs found.")
+        try:
+            with open("log.txt", "r") as file:
+                text.insert(END, file.read())
+        except FileNotFoundError:
+            text.insert(END, "No logs found.")
 
-                text.config(state=DISABLED)
+        text.config(state=DISABLED)
 
-                Button(
-                    self.root,
-                    text="Back",
-                    command=self.admin_menu
-                ).pack(pady=5)
+        Button(
+            self.root,
+            text="Back",
+            command=self.admin_menu
+        ).pack(pady=5)
 
 
 
