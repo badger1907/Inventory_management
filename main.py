@@ -4,31 +4,36 @@ import sqlite3
 import records
 import file_manager
 import gui
+import users
 
 class Main():
     def __init__(self):
         self.gui = gui.Gui()
-        
+
+
+    def hash_pass(password):
+        password=str.encode(password)
+        sha256=hashlib.sha256()
+        sha256.update(password)
+        e_password  = sha256.hexdigest()
+        return e_password
 
     #user authentification stage, must be logged in to acess system
     def user_authentication(self):
 
             not_loggedin=True
             #keeps going until logged in or program ends
+            username, password, attempt = self.gui.login_gui(False)
             while not_loggedin:
                 #enters details
-                print("tryinhg to display logim")
-                username, password, attempt = self.gui.login_gui()
+                
                 if attempt==False:
                     #sign up process
                     self.gui.clear_window()
                     print("---- Sign Up ----")
                     username, password, f_name, s_name = self.gui.signUp_gui()
                     #hashes password
-                    password=str.encode(password)
-                    sha256=hashlib.sha256()
-                    sha256.update(password)
-                    e_password  = sha256.hexdigest()
+                    e_password  = Main.hash_pass(password)
                     #create a user object
                     new_user=users.User(username, e_password)
 
@@ -36,10 +41,7 @@ class Main():
                     new_user.sign_up(f_name, s_name)
                 else:
                     #hashes password
-                    password=str.encode(password)
-                    sha256=hashlib.sha256()
-                    sha256.update(password)
-                    e_password  = sha256.hexdigest()
+                    e_password  = Main.hash_pass(password)
                     #create a user object
                     unconfirmed_user=users.User(username, e_password)
                     found=unconfirmed_user.login()
@@ -48,9 +50,11 @@ class Main():
                         #logged in sucesfully
                         not_loggedin=False
                         self.gui.clear_window()
+                        self.gui.setUser(unconfirmed_user)
                         return unconfirmed_user
                     else:
                         self.gui.clear_window()
+                username, password, attempt = self.gui.login_gui(True)
 
             
 
@@ -86,131 +90,8 @@ class Main():
     #first meu seen by user
     #display table, create an entry, search the table, enter admin mode or quit
     def menu1(self,user):
-        try:
-            inp=""
-            #welcome lines
-            print("*****************************************")
-            print("welcome to Fylde Aero Inventory system")
-            print("This is currently being run in the command line")
-            print("---------------------------------")
-            valid=False
-            #run search for items below
-            #options with validation
-            while valid==False:
-                print("1 - See table")
-                print("2 - create an entry")
-                print("3 - search")
-                print("4 - admin mode")
-                print("/ - exit")
-                inp=input("Enter a value (1-4 or '/'): ")
-                print("---------------------------------")
-                if inp == "1":
-                    #displays table
-                    print("")
-                    print("---Inventory---")
-                    #reads all theitems into an array and displays line by line
-                    array_records=records.Record_manager.read_all(user)
-                    for item in array_records:
-                        print(item)
-                    valid=True
-                    print("--------------")
-                    self.menu2(user)
-                elif inp == "2":
-                    #creates a new record
-                    checked=False
-                    #validation and data entry
-                    while checked==False:
-                        checked=True
-                        print("")
-                        print("---Create entry---")
-                        record_name=input("enter the name of the item: ")
-                        record_code=input("enter the product code: ")
-                        quantity=input("enter the quantity: ")
-                        if quantity.isdigit() == True:
-                            if int(quantity)<0:
-                                checked=False
-                                print("error - must be greater than 0")
-                                continue
-                        else:
-                            checked=False
-                            print("error - must be a number")
-                            continue
-                        unit=input("enter the unit: ")
-                        print("------")
-                    #creates record and writes it to the database    
-                    record=records.Record(record_name,record_code,user,quantity,unit)
-                    record.write_record()
-                    valid=True
-                elif inp == "3":
-                    #search the table
-                    print("")
-                    print("---search---")
-                    feild=input("enter the feild (product_name,Product_code,quantity,unit,who) you are searching: ")
-                    value=input("enter the value you are searching: ")
-                    #entered values then searched (validation in function)
-                    records.Record_manager.search(feild,value,user)
-                    valid=True
-                    #option to select a entry or go back to the main menu
-                    print("--------------")
-                    entry=input("select field(s) yes/no: ")
-                    if input== "yes":
-                        self.menu2(user)
-                    else:
-                        self.menu1(user)
-                elif inp=="/":
-                    #exits application
-                    print("you have exited the application")
-                    user.logout()
-                    exit(1)
-                elif inp == "4":
-                    #admin mode
-                    self.admin(user)
-                else:
-                    print("not a valid input, try again")
-            return True
-        except:
-            user.logout()
-
-    #second meu allowing the user to select a single record
-    def menu2(self,user):
-        try:
-            #menu page
-            print(" ")
-            print("please select an entry to work with")
-            code=input("enter the product-code of the entry: ")   
-            entry=records.Record_manager.select(code,user)
-            #validation inside read
-            print("you have selected:")
-            entry.display_record()
-            valid=False
-            print("---------------------")
-            #options availible
-            while valid==False:
-                print("1 - update record")
-                print("2 - delete record")
-                print("/ - to escape")
-                inp=input("What would you like to do with the selected record: ")
-                match inp:
-                    case "1":
-                        #update record
-                        feild=input("enter the feild (product_name,Product_code,quantity,unit) you would like to change: ")
-                        value=input("enter the value you would like to change it to: ")
-                        entry.update_record(feild,value)
-                        #validation inside update
-                        valid=True
-                    case "2":
-                        #delete record
-                        entry.delete_record()
-                        valid=True
-                    case "/":
-                        #exit
-                        valid=True
-                    case _:
-                        print("invalid option - try again")
-            self.menu1(user)
-        except:
-            print("broken")
-            user.logout()
+        self.gui.main_menu(records.Record_manager.read_low(user),records.Record_manager.read_all(user),user)
+        user.logout()
 
 #admin menu
     def admin(self,user):

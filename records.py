@@ -1,6 +1,8 @@
-from file_manager import filemanager
+import file_manager
 import sqlite3
 from datetime import datetime
+
+from users import User
 
 #record class, deals with users data and changes
 class Record:
@@ -21,7 +23,7 @@ class Record:
             print("error occured trying to update record")
             status="failed"
         finally:
-            filemanager.log(self.__user, status+"updated inventory item "+self.__product_code)
+            file_manager.filemanager.log(self.__user, status+"updated inventory item "+self.__product_code)
 
     #writes record and logs chnage
     def write_record(self):
@@ -32,7 +34,7 @@ class Record:
             print("error occured trying to create a record")
             status="failed"
         finally:
-            filemanager.log(self.__user, status+"added inventory item "+self.__product_code)
+            file_manager.filemanager.log(self.__user, status+"added inventory item "+self.__product_code)
 
 
     #deletes record and logs chnage
@@ -44,14 +46,13 @@ class Record:
             print("error occured trying to delete a record")
             status="failed"
         finally:
-            filemanager.log(self.__user, status+"deleted inventory item "+self.__product_code)
+            file_manager.filemanager.log(self.__user, status+"deleted inventory item "+self.__product_code)
 
     #displays record    
     def display_record(self):
-        try:
-            print(self.__product_name+","+self.__product_code+","+self.__quantity+","+self.__unit)
-        except:
-            print("error occured trying to display a record")
+
+        return(str(self.__product_name)+","+str(self.__product_code)+","+str(self.__quantity)+","+str(self.__unit)+","+self.__user.display()+","+str(datetime.now().strftime("%d/%m/%y, %H:%M:%S")))
+
         
 # interacts with the database
 class Record_manager():
@@ -76,7 +77,29 @@ class Record_manager():
             file.write(user.username+" read "+status+" inventory at " +datetime.now().strftime("%d/%m/%y, %H:%M:%S")+"\n")      
             Connection.close()
             file.close()
-        return output
+        return Record_manager.convert_array(output)
+    
+    def read_low(user):
+        try:
+            #access invenotry and runs query
+            Connection = sqlite3.connect('inventory.db')
+            cursor = Connection.cursor()
+            query="""SELECT * FROM Inventory
+                    WHERE quantity < 5"""
+            cursor.execute(query)
+            output=cursor.fetchall()
+            file = open("log.txt","a")
+            Connection.commit()
+            status=""
+        except:
+            print("error occured - display failed")
+            status="failed"       
+        finally:
+            #logs change and closes file     
+            file.write(user.username+" read "+status+" low inventory at " +datetime.now().strftime("%d/%m/%y, %H:%M:%S")+"\n")      
+            Connection.close()
+            file.close()
+        return Record_manager.convert_array(output)
     
     #creates a record object based of a selected rerod from the database
     def select(product_code_entered,user):
@@ -103,8 +126,8 @@ class Record_manager():
             #close all and log
             Connection.commit()
             Connection.close()
-            filemanager.log(user,"selected"+product_code_entered)
-        return entry
+            file_manager.filemanager.log(user,"selected"+product_code_entered)
+        return Record_manager.convert_array(entry)
 
 
 
@@ -130,12 +153,12 @@ class Record_manager():
                     WHERE """+feild+ "= '"+value+"';"
             cursor.execute(query)
             rows=cursor.fetchall()
-            return rows
+            return Record_manager.convert_array(rows)
         except:
             print("error occured - search failed")
         finally:
             #close and log
-            filemanager.log(user,"searched in "+feild+ " value")
+            file_manager.filemanager.log(user,"searched in "+feild+ " value")
             Connection.commit()
             Connection.close()
                 
@@ -161,26 +184,15 @@ class Record_manager():
     def update(feild,value,user,product_code):
         try:
             #access invenotry and runs query
-            valid_feilds=["product_name","Product_code","quantity","unit"]
+            #valid_feilds=["product_name","Product_code","quantity","unit"]
             Connection = sqlite3.connect('inventory.db')
-            cursor = Connection.cursor()
-            valid=False
-            #checks valid field
-            while valid==False:
-                for i in range (0,len(valid_feilds)):
-                    if valid_feilds[i] == feild:
-                        valid=True
-                if valid==False:
-                    print("invalid - feild name not valid")
-                    feild=input("enter the feild (product_name,Product_code,quantity,unit) you would like to change: ")
-                    value=input("enter the value you would like to change it to: ")
-                    
+            cursor = Connection.cursor()   
             query="UPDATE Inventory SET '"+feild+"' = ? WHERE product_code = ?"
             query2="""UPDATE Inventory SET who = ? WHERE product_code = ?"""  
             cursor.execute(query,(value,product_code))
             cursor.execute(query2,(user.username,product_code))
-        except:
-            print("error occured - update failed")
+        except Exception as e:
+            print("error occured - update failed+", e)
         finally:
             #close all
             Connection.commit()
@@ -201,8 +213,26 @@ class Record_manager():
             #close all
             Connection.commit()
             Connection.close()
-    
 
+    #converts array data from sql to record objects
+    def convert_array(data):
+        manager=file_manager.filemanager()
+        if isinstance(data, list):
+            records_array=[]
+            for item in data:
+                username,password=manager.get_user(item[5])
+                user=User(username,password)
+                record=Record(item[1],item[2],user,item[3],item[4])
+                records_array.append(record)
+            return records_array
+        else:
+            item=data
+            username,password=manager.get_user(item[5])
+            user=User(username,password)
+            record=Record(item[1],item[2],user,item[3],item[4])
+            return record
+    
+# should be get user then make a new user
 
 
 

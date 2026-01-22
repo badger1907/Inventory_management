@@ -7,6 +7,9 @@ class User:
         self.username=username
         self.logged_in = False
 
+    def display(self):
+        return str(self.username)
+
     #checks if user logged in
     def is_logged_in(self):
         return self.logged_in
@@ -73,4 +76,8 @@ class User:
     def logout(self):
         self.logged_in=False
         file_manager.filemanager.log(self,"logged out")
+
+    def find_user(username):
+        system = file_manager.filemanager()
+        return system.find_user(username)
 

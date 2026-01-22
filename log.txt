@@ -62,3 +62,170 @@ username did logged out on 21/01/26, 18:09:34
 username did logged in on 21/01/26, 19:18:18
 new did signed up on 21/01/26, 19:26:13
 new did logged in on 21/01/26, 19:26:21
+username did logged in on 22/01/26, 16:36:18
+username read  inventory at 22/01/26, 16:36:18
+username did logged in on 22/01/26, 16:39:26
+username read  low inventory at 22/01/26, 16:39:26
+username read  inventory at 22/01/26, 16:39:26
+username did logged in on 22/01/26, 16:42:07
+username read  low inventory at 22/01/26, 16:42:07
+username read  inventory at 22/01/26, 16:42:07
+username did logged in on 22/01/26, 16:47:16
+username read  low inventory at 22/01/26, 16:47:16
+username read  inventory at 22/01/26, 16:47:16
+username did logged in on 22/01/26, 17:01:17
+username read  low inventory at 22/01/26, 17:01:17
+username read  inventory at 22/01/26, 17:01:17
+username did logged out on 22/01/26, 17:01:26
+username did logged in on 22/01/26, 17:19:38
+username read  low inventory at 22/01/26, 17:19:38
+username read  inventory at 22/01/26, 17:19:38
+username did logged in on 22/01/26, 17:32:00
+username read  low inventory at 22/01/26, 17:32:00
+username read  inventory at 22/01/26, 17:32:00
+username did logged in on 22/01/26, 17:34:04
+username read  low inventory at 22/01/26, 17:34:04
+username read  inventory at 22/01/26, 17:34:04
+username did logged in on 22/01/26, 17:35:05
+username read  low inventory at 22/01/26, 17:35:05
+username read  inventory at 22/01/26, 17:35:05
+username did logged in on 22/01/26, 17:37:37
+username read  low inventory at 22/01/26, 17:37:37
+username read  inventory at 22/01/26, 17:37:37
+username did searched in Product_code value on 22/01/26, 17:37:47
+username did logged out on 22/01/26, 17:37:51
+username did logged in on 22/01/26, 17:41:27
+username read  low inventory at 22/01/26, 17:41:27
+username read  inventory at 22/01/26, 17:41:27
+username did logged in on 22/01/26, 17:44:01
+username read  low inventory at 22/01/26, 17:44:01
+username read  inventory at 22/01/26, 17:44:01
+username did logged out on 22/01/26, 17:44:17
+username did logged in on 22/01/26, 17:45:33
+username read  low inventory at 22/01/26, 17:45:33
+username read  inventory at 22/01/26, 17:45:33
+username read  inventory at 22/01/26, 17:45:49
+username read  low inventory at 22/01/26, 17:45:49
+username did logged out on 22/01/26, 17:45:57
+username did logged in on 22/01/26, 17:49:38
+username read  low inventory at 22/01/26, 17:49:38
+username read  inventory at 22/01/26, 17:49:38
+username did logged out on 22/01/26, 17:49:49
+username did logged in on 22/01/26, 17:50:58
+username read  low inventory at 22/01/26, 17:50:58
+username read  inventory at 22/01/26, 17:50:58
+username did logged in on 22/01/26, 17:52:00
+username read  low inventory at 22/01/26, 17:52:00
+username read  inventory at 22/01/26, 17:52:00
+username did logged out on 22/01/26, 17:52:24
+username did logged in on 22/01/26, 17:53:02
+username read  low inventory at 22/01/26, 17:53:02
+username read  inventory at 22/01/26, 17:53:02
+username read  inventory at 22/01/26, 17:53:15
+username read  low inventory at 22/01/26, 17:53:15
+username did logged out on 22/01/26, 17:59:14
+username did logged in on 22/01/26, 17:59:33
+username read  low inventory at 22/01/26, 17:59:33
+username read  inventory at 22/01/26, 17:59:33
+username read  inventory at 22/01/26, 17:59:52
+username read  low inventory at 22/01/26, 17:59:52
+username did logged in on 22/01/26, 18:02:46
+username read  low inventory at 22/01/26, 18:02:46
+username read  inventory at 22/01/26, 18:02:46
+username read  inventory at 22/01/26, 18:02:52
+username read  low inventory at 22/01/26, 18:02:52
+username did logged out on 22/01/26, 18:03:13
+username did logged in on 22/01/26, 18:07:10
+username read  low inventory at 22/01/26, 18:07:10
+username read  inventory at 22/01/26, 18:07:10
+username read  inventory at 22/01/26, 18:07:21
+username read  low inventory at 22/01/26, 18:07:21
+username did logged in on 22/01/26, 18:10:18
+username read  low inventory at 22/01/26, 18:10:18
+username read  inventory at 22/01/26, 18:10:18
+username read  inventory at 22/01/26, 18:10:23
+username read  low inventory at 22/01/26, 18:10:23
+username did logged out on 22/01/26, 18:10:30
+username did logged in on 22/01/26, 18:20:36
+username read  low inventory at 22/01/26, 18:20:36
+username did logged in on 22/01/26, 18:21:13
+username read  low inventory at 22/01/26, 18:21:13
+username did logged in on 22/01/26, 18:21:36
+username read  low inventory at 22/01/26, 18:21:36
+username did logged in on 22/01/26, 18:27:16
+username read  low inventory at 22/01/26, 18:27:16
+username did logged in on 22/01/26, 18:27:58
+username read  low inventory at 22/01/26, 18:27:58
+username did logged in on 22/01/26, 18:28:27
+username read  low inventory at 22/01/26, 18:28:27
+username did logged in on 22/01/26, 18:33:28
+username read  low inventory at 22/01/26, 18:33:28
+username read  inventory at 22/01/26, 18:33:28
+username read  inventory at 22/01/26, 18:33:35
+username read  low inventory at 22/01/26, 18:33:35
+username did logged out on 22/01/26, 18:33:52
+username did logged in on 22/01/26, 21:06:39
+username read  low inventory at 22/01/26, 21:06:39
+username read  inventory at 22/01/26, 21:06:39
+username read  inventory at 22/01/26, 21:06:52
+username read  low inventory at 22/01/26, 21:06:52
+username did logged out on 22/01/26, 21:07:00
+username did logged in on 22/01/26, 21:09:57
+username read  low inventory at 22/01/26, 21:09:57
+username read  inventory at 22/01/26, 21:09:57
+username did updated inventory item 5MS6 on 22/01/26, 21:10:11
+username read  inventory at 22/01/26, 21:10:11
+username read  low inventory at 22/01/26, 21:10:11
+username did logged in on 22/01/26, 21:11:58
+username read  low inventory at 22/01/26, 21:11:58
+username read  inventory at 22/01/26, 21:11:58
+username did updated inventory item GH67 on 22/01/26, 21:12:24
+username read  inventory at 22/01/26, 21:12:24
+username read  low inventory at 22/01/26, 21:12:24
+username did logged out on 22/01/26, 21:12:28
+username did logged in on 22/01/26, 21:16:51
+username read  low inventory at 22/01/26, 21:16:51
+username read  inventory at 22/01/26, 21:16:51
+username did logged out on 22/01/26, 21:17:06
+username did logged in on 22/01/26, 21:18:03
+username read  low inventory at 22/01/26, 21:18:03
+username read  inventory at 22/01/26, 21:18:03
+username did updated inventory item GY89 on 22/01/26, 21:18:16
+username read  inventory at 22/01/26, 21:18:16
+username read  low inventory at 22/01/26, 21:18:16
+username did logged out on 22/01/26, 21:18:30
+username did logged in on 22/01/26, 21:19:15
+username read  low inventory at 22/01/26, 21:19:15
+username read  inventory at 22/01/26, 21:19:15
+username did logged in on 22/01/26, 21:25:18
+username read  low inventory at 22/01/26, 21:25:18
+username read  inventory at 22/01/26, 21:25:18
+username did added inventory item 1 on 22/01/26, 21:25:35
+username read  inventory at 22/01/26, 21:25:35
+username read  low inventory at 22/01/26, 21:25:35
+username did deleted inventory item 1 on 22/01/26, 21:25:44
+username read  inventory at 22/01/26, 21:25:44
+username read  low inventory at 22/01/26, 21:25:44
+username did logged out on 22/01/26, 21:25:47
+username did logged in on 22/01/26, 21:27:13
+username read  low inventory at 22/01/26, 21:27:13
+username read  inventory at 22/01/26, 21:27:13
+username did added inventory item TP87 on 22/01/26, 21:27:40
+username read  inventory at 22/01/26, 21:27:40
+username read  low inventory at 22/01/26, 21:27:40
+username did updated inventory item TP87 on 22/01/26, 21:27:54
+username read  inventory at 22/01/26, 21:27:54
+username read  low inventory at 22/01/26, 21:27:54
+username did updated inventory item 5MS6 on 22/01/26, 21:28:03
+username read  inventory at 22/01/26, 21:28:03
+username read  low inventory at 22/01/26, 21:28:03
+username did deleted inventory item TP87 on 22/01/26, 21:28:09
+username read  inventory at 22/01/26, 21:28:09
+username read  low inventory at 22/01/26, 21:28:09
+username did searched in product_name value on 22/01/26, 21:28:22
+username read  inventory at 22/01/26, 21:28:29
+username read  low inventory at 22/01/26, 21:28:29
+username did logged in on 22/01/26, 21:34:18
+username read  low inventory at 22/01/26, 21:34:18
+username read  inventory at 22/01/26, 21:34:18
+username did logged out on 22/01/26, 21:34:35

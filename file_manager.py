@@ -36,7 +36,7 @@ class filemanager:
             file.close()
                 
     #checks if there is a user that has the entered username
-    def find_user(self,username):
+    def find_user(self, username):
         try:
             file=open("Users.txt","r")
             line = "stuff"
