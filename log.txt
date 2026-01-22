@@ -229,3 +229,39 @@ username did logged in on 22/01/26, 21:34:18
 username read  low inventory at 22/01/26, 21:34:18
 username read  inventory at 22/01/26, 21:34:18
 username did logged out on 22/01/26, 21:34:35
+username did logged in on 22/01/26, 21:48:26
+username read  low inventory at 22/01/26, 21:48:26
+username read  inventory at 22/01/26, 21:48:26
+admin did FAILED(password incorrect) at logging in as an admin on 22/01/26, 21:48:38
+admin did FAILED(password incorrect) at logging in as an admin on 22/01/26, 21:48:44
+admin did FAILED(password incorrect) at logging in as an admin on 22/01/26, 21:48:51
+username read  inventory at 22/01/26, 21:48:53
+username read  low inventory at 22/01/26, 21:48:53
+username did logged in on 22/01/26, 21:55:02
+username read  low inventory at 22/01/26, 21:55:02
+username read  inventory at 22/01/26, 21:55:02
+username did logged in on 22/01/26, 22:02:46
+username read  low inventory at 22/01/26, 22:02:46
+username read  inventory at 22/01/26, 22:02:46
+username did logged in on 22/01/26, 22:04:07
+username read  low inventory at 22/01/26, 22:04:07
+username read  inventory at 22/01/26, 22:04:07
+username did logged in on 22/01/26, 22:04:54
+username read  low inventory at 22/01/26, 22:04:54
+username read  inventory at 22/01/26, 22:04:54
+username did logged in on 22/01/26, 22:05:54
+username read  low inventory at 22/01/26, 22:05:54
+username read  inventory at 22/01/26, 22:05:54
+username read  inventory at 22/01/26, 22:06:11
+username read  low inventory at 22/01/26, 22:06:11
+username read  inventory at 22/01/26, 22:06:13
+username read  low inventory at 22/01/26, 22:06:13
+username read  inventory at 22/01/26, 22:06:16
+username read  low inventory at 22/01/26, 22:06:16
+username read  inventory at 22/01/26, 22:06:19
+username read  low inventory at 22/01/26, 22:06:19
+username did logged out on 22/01/26, 22:06:22
+username did logged in on 22/01/26, 22:09:12
+username read  low inventory at 22/01/26, 22:09:12
+username read  inventory at 22/01/26, 22:09:12
+username did logged out on 22/01/26, 22:09:51

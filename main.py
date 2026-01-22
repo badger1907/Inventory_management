@@ -1,8 +1,7 @@
+import common
 import users
-import hashlib
 import sqlite3
 import records
-import file_manager
 import gui
 import users
 
@@ -10,13 +9,6 @@ class Main():
     def __init__(self):
         self.gui = gui.Gui()
 
-
-    def hash_pass(password):
-        password=str.encode(password)
-        sha256=hashlib.sha256()
-        sha256.update(password)
-        e_password  = sha256.hexdigest()
-        return e_password
 
     #user authentification stage, must be logged in to acess system
     def user_authentication(self):
@@ -33,7 +25,7 @@ class Main():
                     print("---- Sign Up ----")
                     username, password, f_name, s_name = self.gui.signUp_gui()
                     #hashes password
-                    e_password  = Main.hash_pass(password)
+                    e_password  = common.hash_pass(password)
                     #create a user object
                     new_user=users.User(username, e_password)
 
@@ -41,7 +33,7 @@ class Main():
                     new_user.sign_up(f_name, s_name)
                 else:
                     #hashes password
-                    e_password  = Main.hash_pass(password)
+                    e_password  = common.hash_pass(password)
                     #create a user object
                     unconfirmed_user=users.User(username, e_password)
                     found=unconfirmed_user.login()
@@ -86,43 +78,11 @@ class Main():
         finally:
             connection.close()
 
-
-    #first meu seen by user
-    #display table, create an entry, search the table, enter admin mode or quit
     def menu1(self,user):
         self.gui.main_menu(records.Record_manager.read_low(user),records.Record_manager.read_all(user),user)
         user.logout()
 
-#admin menu
-    def admin(self,user):
-        try:
-            #login menu
-            print(" -- Login --")
-            password=input("enter your password: ")
-            print("-----------")
-            #hasing password
-            password=str.encode(password)
-            sha256=hashlib.sha256()
-            sha256.update(password)
-            e_password  = sha256.hexdigest()
-            #create a 
-            admin_user=users.User("admin", e_password)
-            found=admin_user.admin_login(user)
-            if found:
-                #options once logged in
-                print("login sucesful")
-                print("1 - view logs")
-                print("2 - return to main menu")
-                inp=input()
-                if inp=="1":
-                    file_manager.filemanager.view_logs()
-            else:
-                #login failed messages
-                print("login failed")
-                print("your atempts has been logged")
-            self.menu1(user)
-        except:
-            print("no admins today")
+
 
 main=Main()
 #initial checks

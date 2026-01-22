@@ -1,4 +1,7 @@
 from tkinter import *
+from tkinter import messagebox
+from tkinter import ttk
+import common
 import records
 import users
 
@@ -6,8 +9,9 @@ class Gui:
     def __init__(self):
         self.root = Tk()
         self.root.title("Inventory Management System")
-        self.root.geometry("400x200")
+        self.root.geometry("750x500")
         self.user=None
+        self.current_items = []
 
         # These will store the input values
         self.username = None
@@ -24,10 +28,7 @@ class Gui:
     def setUser(self,user):
         self.user=user
 
-    def populate_listbox(listbox, items):
-        listbox.delete(0, END)
-        for item in items:
-            listbox.insert(END, item.display_record())
+
 
     def main_menu(self, warning_items, items,user):
         self.user=user
@@ -80,50 +81,166 @@ class Gui:
 
         Label(self.root, text="All Items").pack(pady=5)
 
-        listbox = Listbox(self.root, width=60, height=12)
-        listbox.pack(pady=5)
 
-        
-        self.current_items = items
 
-        def populate(item_list):
-            listbox.delete(0, END)
-            self.current_items = item_list
-            for item in item_list:
-                listbox.insert(END, item.display_record())
+        # ---------------- TABLE (Treeview) ----------------
+        table_frame = Frame(self.root)
+        table_frame.pack(fill=BOTH, expand=True, padx=10, pady=5)
 
-        def populate_warning(item_list):
-            Label(self.root, text="Warning: Low Stock Items", fg="red").pack()
-            warning_listbox = Listbox(self.root, width=60, height=12)
-            warning_listbox.pack(pady=5)
-            warning_listbox.delete(0, END)
-            self.warning_items = item_list
-            for item in item_list:
-                warning_listbox.insert(END, item.display_record())
+        self.tree = ttk.Treeview(
+            table_frame,
+            columns=("name", "code", "qty", "unit"),
+            show="headings",
+            height=15
+        )
 
+        self.tree.heading("name", text="Product Name")
+        self.tree.heading("code", text="Code")
+        self.tree.heading("qty", text="Quantity")
+        self.tree.heading("unit", text="Unit")
+
+        self.tree.column("name", width=260)
+        self.tree.column("code", width=120)
+        self.tree.column("qty", width=80, anchor=CENTER)
+        self.tree.column("unit", width=80, anchor=CENTER)
+
+        scrollbar = Scrollbar(table_frame, orient=VERTICAL, command=self.tree.yview)
+        self.tree.configure(yscrollcommand=scrollbar.set)
+
+        self.tree.pack(side=LEFT, fill=BOTH, expand=True)
+        scrollbar.pack(side=RIGHT, fill=Y)
+
+
+        combined_items = []
         if warning_items:
-            populate_warning(warning_items)
-            populate(items)
-        else:
-            populate(items)
+            combined_items.extend(warning_items)
+        combined_items.extend(items)
+
+
+
+        self.populate_tree(combined_items, warning_items)
+
 
         def open_selected(event=None):
-            if not listbox.curselection():
+            selected = self.tree.selection()
+            if not selected:
                 return
 
-            index = listbox.curselection()[0]
+            index = self.tree.index(selected[0])
             record = self.current_items[index]
             self.item_menu(record)
 
-        listbox.bind("<Double-Button-1>", open_selected)
+        self.tree.bind("<Double-1>", open_selected)
+
+       
+
+        button_frame = Frame(self.root)
+        button_frame.pack(pady=10)
 
         Button(
-            self.root,
+            button_frame,
             text="Create New Item",
+            width=18,
+            fg="green",
             command=self.create_item_menu
-        ).pack(pady=5)
+        ).pack(side=LEFT, padx=5)
+
+        Button(
+            button_frame,
+            text="Admin Login",
+            width=18,
+            fg="blue",
+            command=self.admin_login_gui
+        ).pack(side=LEFT, padx=5)
 
         self.root.mainloop()
+
+    def populate_tree(self, items, warning_items):
+        self.tree.delete(*self.tree.get_children())
+        self.current_items = items
+
+        for item in items:
+            tag = "low" if item in warning_items else "normal"
+
+            self.tree.insert(
+                "",
+                END,
+                values=(
+                    item._Record__product_name,
+                    item._Record__product_code,
+                    item._Record__quantity,
+                    item._Record__unit
+                ),
+                tags=(tag,)
+            )
+
+        self.tree.tag_configure("low", foreground="red")
+
+    def admin_login_gui(self):
+        self.clear_window()
+
+        Label(self.root, text="Admin Login", font=("Helvetica", 16)).pack(pady=10)
+
+        Label(self.root, text="Admin Password").pack()
+        password_entry = Entry(self.root, show="*")
+        password_entry.pack(pady=5)
+
+        def login():
+            admin_password = password_entry.get()
+            admin_user=users.User("admin", common.hash_pass(admin_password))
+            found=admin_user.admin_login(admin_user)
+
+            if found:
+                self.admin_menu()
+            else:
+                messagebox.showerror("Error", "Incorrect admin password")
+
+        Button(self.root, text="Login", command=login).pack(pady=5)
+        Button(self.root, text="Back", command=self.refresh_main_menu).pack(pady=5)
+
+        def admin_menu(self):
+            self.clear_window()
+
+            Label(self.root, text="Admin Area", font=("Helvetica", 16)).pack(pady=10)
+
+            Button(
+                self.root,
+                text="View Logs",
+                width=20,
+                command=self.view_logs_gui
+            ).pack(pady=5)
+
+            Button(
+                self.root,
+                text="Back to Inventory",
+                width=20,
+                command=self.refresh_main_menu
+            ).pack(pady=10)
+
+            def view_logs_gui(self):
+                self.clear_window()
+
+                Label(self.root, text="System Logs", font=("Helvetica", 16)).pack(pady=10)
+
+                text = Text(self.root, width=80, height=20)
+                text.pack(padx=10, pady=5)
+
+                try:
+                    with open("log.txt", "r") as file:
+                        text.insert(END, file.read())
+                except FileNotFoundError:
+                    text.insert(END, "No logs found.")
+
+                text.config(state=DISABLED)
+
+                Button(
+                    self.root,
+                    text="Back",
+                    command=self.admin_menu
+                ).pack(pady=5)
+
+
+
 
     def create_item_menu(self):
         self.clear_window()
