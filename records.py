@@ -232,7 +232,7 @@ class Record_manager():
             record=Record(item[1],item[2],user,item[3],item[4])
             return record
     
-# should be get user then make a new user
+
 
 
 

@@ -265,3 +265,19 @@ username did logged in on 22/01/26, 22:09:12
 username read  low inventory at 22/01/26, 22:09:12
 username read  inventory at 22/01/26, 22:09:12
 username did logged out on 22/01/26, 22:09:51
+username did logged in on 23/01/26, 11:15:15
+username read  low inventory at 23/01/26, 11:15:15
+username read  inventory at 23/01/26, 11:15:15
+username did logged out on 23/01/26, 11:19:29
+username did logged in on 26/01/26, 14:21:11
+username read  low inventory at 26/01/26, 14:21:11
+username read  inventory at 26/01/26, 14:21:11
+username did searched in who value on 26/01/26, 14:21:28
+username did searched in who value on 26/01/26, 14:21:30
+username did searched in quantity value on 26/01/26, 14:21:45
+username did searched in quantity value on 26/01/26, 14:21:48
+username did searched in product_name value on 26/01/26, 14:21:58
+username did searched in product_name value on 26/01/26, 14:22:00
+username read  inventory at 26/01/26, 14:22:06
+username read  low inventory at 26/01/26, 14:22:06
+username did logged out on 26/01/26, 14:22:18

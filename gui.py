@@ -36,13 +36,12 @@ class Gui:
 
         Label(self.root, text="Inventory", font=("Helvetica", 16)).pack(pady=10)
 
-            # --- SEARCH CONTROLS ---
+            # search control
         search_frame = Frame(self.root)
         search_frame.pack(pady=5)
 
         field_var = StringVar(value="product_name")
         value_var = StringVar()
-
         OptionMenu(
             search_frame,
             field_var,
@@ -52,17 +51,11 @@ class Gui:
             "unit",
             "who"
         ).grid(row=0, column=0, padx=5)
-
         Entry(search_frame, textvariable=value_var, width=20).grid(row=0, column=1, padx=5)
 
-               # --- SEARCH FUNCTION ---
         def search():
             feild = field_var.get()
             value = value_var.get()
-
-            if value == "":
-                populate(items)
-                return
 
             results = records.Record_manager.search(feild, value, user)
 
@@ -76,7 +69,7 @@ class Gui:
 
 
 
-        # ---------------- TABLE (Treeview) ----------------
+        # tree table
         table_frame = Frame(self.root)
         table_frame.pack(fill=BOTH, expand=True, padx=10, pady=5)
 
@@ -288,7 +281,7 @@ class Gui:
 
 
     def login_gui(self, issue):
-        """Display the login screen and return (username, password, attempt=True)."""
+        #Display the login screen and return (username, password, attempt=True)
         self.clear_window()
 
         Label(self.root, text="Login").grid(row=0, column=0, columnspan=2, pady=5)
@@ -309,7 +302,7 @@ class Gui:
             self.username = username_entry.get()
             self.password = password_entry.get()
             self.attempt = True  # login attempt
-            self.root.quit()     # exit mainloop to return control
+            self.root.quit()     # exit mainloop
 
         def signup():
             self.username = username_entry.get()
