@@ -281,3 +281,124 @@ username did searched in product_name value on 26/01/26, 14:22:00
 username read  inventory at 26/01/26, 14:22:06
 username read  low inventory at 26/01/26, 14:22:06
 username did logged out on 26/01/26, 14:22:18
+username did logged in on 26/01/26, 14:25:23
+username read  low inventory at 26/01/26, 14:25:23
+username read  inventory at 26/01/26, 14:25:23
+username did searched in product_name value on 26/01/26, 14:25:28
+username did searched in product_name value on 26/01/26, 14:25:45
+username did searched in product_name value on 26/01/26, 14:25:49
+username did logged out on 26/01/26, 14:26:24
+username did logged in on 26/01/26, 14:26:39
+username read  low inventory at 26/01/26, 14:26:39
+username read  inventory at 26/01/26, 14:26:39
+username did searched in product_name value on 26/01/26, 14:26:44
+username read  inventory at 26/01/26, 14:27:17
+username read  low inventory at 26/01/26, 14:27:17
+username did logged out on 26/01/26, 14:27:25
+username did logged in on 26/01/26, 14:31:19
+username read  low inventory at 26/01/26, 14:31:19
+username read  inventory at 26/01/26, 14:31:19
+username did searched in product_name value on 26/01/26, 14:32:12
+username did searched in product_name value on 26/01/26, 14:32:14
+username did searched in product_name value on 26/01/26, 14:32:14
+username did searched in product_name value on 26/01/26, 14:32:14
+username did searched in product_name value on 26/01/26, 14:32:14
+username read  inventory at 26/01/26, 14:32:18
+username read  low inventory at 26/01/26, 14:32:18
+username did logged out on 26/01/26, 14:32:20
+username did logged in on 26/01/26, 14:33:10
+username read  low inventory at 26/01/26, 14:33:10
+username read  inventory at 26/01/26, 14:33:10
+username did searched in product_name value on 26/01/26, 14:33:16
+username read  inventory at 26/01/26, 14:33:19
+username read  low inventory at 26/01/26, 14:33:19
+username did logged out on 26/01/26, 14:33:23
+username did logged in on 26/01/26, 14:34:37
+username read  low inventory at 26/01/26, 14:34:37
+username read  inventory at 26/01/26, 14:34:37
+username did logged out on 26/01/26, 14:34:42
+username did logged in on 26/01/26, 14:36:25
+username read  low inventory at 26/01/26, 14:36:25
+username read  inventory at 26/01/26, 14:36:25
+username did logged in on 26/01/26, 14:38:29
+username read  low inventory at 26/01/26, 14:38:29
+username read  inventory at 26/01/26, 14:38:29
+username did logged out on 26/01/26, 14:44:50
+username did logged in on 26/01/26, 15:02:29
+username read  low inventory at 26/01/26, 15:02:29
+username read  inventory at 26/01/26, 15:02:29
+username did logged in on 26/01/26, 15:03:02
+username read  low inventory at 26/01/26, 15:03:02
+username read  inventory at 26/01/26, 15:03:02
+admin did logged in as an admin on 26/01/26, 15:03:25
+username read  inventory at 26/01/26, 15:04:56
+username read  low inventory at 26/01/26, 15:04:56
+username did logged out on 26/01/26, 15:23:32
+username did logged in on 30/01/26, 10:03:31
+username read  low inventory at 30/01/26, 10:03:31
+username read  inventory at 30/01/26, 10:03:31
+username did logged in on 30/01/26, 10:05:16
+username read  low inventory at 30/01/26, 10:05:16
+username read  inventory at 30/01/26, 10:05:16
+username did logged out on 30/01/26, 10:05:25
+username did logged in on 30/01/26, 10:06:55
+username read  low inventory at 30/01/26, 10:06:55
+username read  inventory at 30/01/26, 10:06:55
+username did searched in quantity value on 30/01/26, 10:07:09
+username read  inventory at 30/01/26, 10:07:14
+username read  low inventory at 30/01/26, 10:07:14
+username did searched in Product_code value on 30/01/26, 10:07:28
+username read  inventory at 30/01/26, 10:07:32
+username read  low inventory at 30/01/26, 10:07:32
+username did searched in product_name value on 30/01/26, 10:07:41
+username did logged in on 30/01/26, 10:09:13
+username read  low inventory at 30/01/26, 10:09:13
+username read  inventory at 30/01/26, 10:09:13
+username did searched in product_name value on 30/01/26, 10:09:19
+username read  inventory at 30/01/26, 10:09:25
+username read  low inventory at 30/01/26, 10:09:25
+username did searched in product_name value on 30/01/26, 10:09:29
+username read  inventory at 30/01/26, 10:09:31
+username read  low inventory at 30/01/26, 10:09:31
+username did searched in Product_code value on 30/01/26, 10:09:41
+username read  inventory at 30/01/26, 10:09:43
+username read  low inventory at 30/01/26, 10:09:43
+eleanor.finley did signed up on 30/01/26, 10:10:20
+eleanor.finley did signed up on 30/01/26, 11:56:42
+eleanor.finley did logged in on 30/01/26, 11:58:00
+eleanor.finley did logged in on 30/01/26, 11:58:13
+eleanor.finley read  low inventory at 30/01/26, 11:58:13
+eleanor.finley read  inventory at 30/01/26, 11:58:13
+eleanor.finley did added inventory item EG1 on 30/01/26, 11:58:52
+eleanor.finley read  inventory at 30/01/26, 11:58:52
+eleanor.finley read  low inventory at 30/01/26, 11:58:52
+eleanor.finley did searched in who value on 30/01/26, 11:59:05
+eleanor.finley read  inventory at 30/01/26, 11:59:10
+eleanor.finley read  low inventory at 30/01/26, 11:59:10
+eleanor.finley did searched in product_name value on 30/01/26, 11:59:15
+eleanor.finley read  inventory at 30/01/26, 11:59:21
+eleanor.finley read  low inventory at 30/01/26, 11:59:21
+eleanor.finley did logged out on 30/01/26, 12:00:36
+username did logged in on 30/01/26, 12:00:53
+username read  low inventory at 30/01/26, 12:00:53
+username read  inventory at 30/01/26, 12:00:53
+username read  inventory at 30/01/26, 12:00:55
+username read  low inventory at 30/01/26, 12:00:55
+username did updated inventory item PG91 on 30/01/26, 12:01:06
+username read  inventory at 30/01/26, 12:01:06
+username read  low inventory at 30/01/26, 12:01:06
+username did logged out on 30/01/26, 12:01:17
+username did logged in on 02/02/26, 13:42:53
+username read  low inventory at 02/02/26, 13:42:53
+username read  inventory at 02/02/26, 13:42:53
+username did added inventory item T01 on 02/02/26, 13:43:20
+username read  inventory at 02/02/26, 13:43:20
+username read  low inventory at 02/02/26, 13:43:20
+username did added inventory item T02 on 02/02/26, 13:43:43
+username read  inventory at 02/02/26, 13:43:43
+username read  low inventory at 02/02/26, 13:43:43
+admin did FAILED(password incorrect) at logging in as an admin on 02/02/26, 13:44:00
+admin did logged in as an admin on 02/02/26, 13:44:06
+username read  inventory at 02/02/26, 13:45:18
+username read  low inventory at 02/02/26, 13:45:18
+username did logged out on 02/02/26, 15:40:21

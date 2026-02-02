@@ -21,7 +21,7 @@ class Gui:
         self.second_name = None 
 
     def clear_window(self):
-        """Remove all widgets from the window."""
+    #Remove all widgets from the window
         for widget in self.root.winfo_children():
             widget.destroy()
 
@@ -56,14 +56,21 @@ class Gui:
         def search():
             feild = field_var.get()
             value = value_var.get()
-
             results = records.Record_manager.search(feild, value, user)
+            self.populate_tree(results, [])
 
         Button(
             search_frame,
             text="Search",
             command=search
         ).grid(row=0, column=2, padx=5)
+
+        Button(
+            self.root,
+            text="Back to main Inventory",
+            width=20,
+            command=self.refresh_main_menu
+        ).pack(pady=10)
 
         Label(self.root, text="All Items").pack(pady=5)
 
@@ -97,14 +104,14 @@ class Gui:
         scrollbar.pack(side=RIGHT, fill=Y)
 
 
-        combined_items = []
-        if warning_items:
-            combined_items.extend(warning_items)
-        combined_items.extend(items)
+        # combined_items = []
+        # if warning_items:
+        #     combined_items.extend(warning_items)
+        # combined_items.extend(items)
 
 
 
-        self.populate_tree(combined_items, warning_items)
+        self.populate_tree(items, warning_items)
 
 
         def open_selected(event=None):
@@ -141,14 +148,12 @@ class Gui:
 
         self.root.mainloop()
 
+#here
     def populate_tree(self, items, warning_items):
         self.tree.delete(*self.tree.get_children())
-        self.current_items = items
-
-        for item in items:
-            tag = "low" if item in warning_items else "normal"
-
-            self.tree.insert(
+        self.tree.tag_configure("red_row", background="red")
+        for item in warning_items:
+             self.tree.insert(
                 "",
                 END,
                 values=(
@@ -157,10 +162,20 @@ class Gui:
                     item._Record__quantity,
                     item._Record__unit
                 ),
-                tags=(tag,)
-            )
-
-        self.tree.tag_configure("low", foreground="red")
+                tags=("red_row",))
+        for item in items:
+            if not common.check_items(item, warning_items):
+                self.tree.insert(
+                    "",
+                    END,
+                    values=(
+                        item._Record__product_name,
+                        item._Record__product_code,
+                        item._Record__quantity,
+                        item._Record__unit
+                    )
+                )
+        self.current_items = items
 
     def admin_login_gui(self):
         self.clear_window()
@@ -319,7 +334,6 @@ class Gui:
         return self.username, self.password, self.attempt
 
     def signUp_gui(self):
-        """Display the sign-up screen and return (username, password)."""
         self.clear_window()
 
         Label(self.root, text="Sign Up").grid(row=0, column=0, columnspan=2, pady=5)
@@ -346,6 +360,10 @@ class Gui:
             self.password = password_entry.get()
             self.first_name = first_name_entry.get()
             self.second_name = second_name_entry.get()
+            if (self.username.strip() == "" or self.password.strip() == "" or
+                self.first_name.strip() == "" or self.second_name.strip() == ""):
+                messagebox.showerror("Error", "All fields are required.")
+                return
             self.root.quit()  # exit mainloop
 
         Button(self.root, text="Sign Up", command=signup, width=15).grid(row=5, column=0, columnspan=2, pady=10)

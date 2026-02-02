@@ -9,3 +9,9 @@ def hash_pass(password):
     sha256.update(password)
     e_password  = sha256.hexdigest()
     return e_password
+
+def check_items(item, item_list):
+    for i in item_list:
+        if i._Record__product_code == item._Record__product_code:
+            return True
+    return False

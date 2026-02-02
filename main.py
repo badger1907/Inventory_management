@@ -15,7 +15,8 @@ class Main():
 
             not_loggedin=True
             #keeps going until logged in or program ends
-            username, password, attempt = self.gui.login_gui(False)
+            hastried=False
+            username, password, attempt = self.gui.login_gui(hastried)
             while not_loggedin:
                 #enters details
                 
@@ -31,6 +32,7 @@ class Main():
 
                     self.gui.clear_window()
                     new_user.sign_up(f_name, s_name)
+
                 else:
                     #hashes password
                     e_password  = common.hash_pass(password)
@@ -46,7 +48,8 @@ class Main():
                         return unconfirmed_user
                     else:
                         self.gui.clear_window()
-                username, password, attempt = self.gui.login_gui(True)
+                        hastried=True
+                username, password, attempt = self.gui.login_gui(hastried)
 
             
 
@@ -94,5 +97,6 @@ while still_going:
     #keep retruning to main menu
     still_going=main.menu1(user)
     
-
+#handle specific erros
+#sort sign in with error handling
 
